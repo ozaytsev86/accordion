@@ -1,0 +1,116 @@
+/*
+    If is needed support for IE, Edge 12 - 15 and mobile browsers
+    instead of use variables, use values directly in the properties
+ */
+
+:root {
+    --border-radius: 2px;
+    --border-color: #ccc;
+    --outer-shadow: 0 0 1px rgba(0, 0, 0, .3);
+    --title-hover-background-color: #eee;
+    --title-active-background-color: #eee;
+    --icon-color: #333;
+    --icon-transition: all .2s ease-in-out;
+    --details-transition: all .3s ease;
+    --outline-color: #212121;
+}
+
+.c-accordion {
+    font-family: Arial, Helvetica, sans, sans-serif;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--outer-shadow);
+    list-style: none;
+    padding-left: 0;
+}
+
+.c-accordion__item {
+    border: 1px solid var(--border-color);
+    border-bottom: 0;
+}
+
+.c-accordion__item:first-child {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.c-accordion__item:last-child {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* hide radio and hover effect */
+.c-accordion__summary-btn {
+    opacity: 0;
+    position: absolute;
+}
+
+.c-accordion__summary-btn:hover + .c-accordion__summary-label {
+    background-color: var(--title-hover-background-color);
+}
+
+.c-accordion__summary-btn:focus + .c-accordion__summary-label {
+    outline: 1px dotted var(--outline-color);
+    outline: -webkit-focus-ring-color  auto 5px;
+}
+
+.c-accordion__summary-btn:checked + .c-accordion__summary-label {
+    background-color: var(--title-active-background-color);
+}
+
+/* show details */
+.c-accordion__summary-btn:checked ~ .c-accordion__details {
+    height: auto;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+/* transition effect on icon from + to - and from - to + */
+.c-accordion__summary-btn:checked ~ .c-accordion__summary-label:before {
+    transform: translate(-50%,-50%) rotate(0);
+}
+
+.c-accordion__summary-btn:checked ~ .c-accordion__summary-label:after {
+    opacity: 0;
+    transform: translate(-50%,-50%) rotate(90deg);
+}
+
+.c-accordion__summary-label {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    padding: 15px 25px 15px 40px;
+    position: relative;
+    width: 100%;
+}
+
+.c-accordion__summary-label:before,
+.c-accordion__summary-label:after {
+    background-color: var(--icon-color);
+    border-radius: var(--border-radius);
+    content: ' ';
+    height: 2px;
+    left: 25px;
+    position: absolute;
+    top: 50%;
+    transition: var(--icon-transition);
+    width: 14px;
+}
+
+.c-accordion__summary-label:before {
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.c-accordion__summary-label:after {
+    transform: translate(-50%, -50%);
+}
+
+.c-accordion__details {
+    box-shadow: inset 0 1px 0 var(--border-color);
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 20px 0 40px;
+    transition: var(--details-transition);
+}
