@@ -4,6 +4,7 @@
  */
 
 :root {
+    --base-color: #333;
     --border-radius: 2px;
     --border-color: #ccc;
     --outer-shadow: 0 0 1px rgba(0, 0, 0, .3);
@@ -15,11 +16,13 @@
     --outline-color: #212121;
 }
 
+/* accordion base styles */
 .c-accordion {
-    font-family: Arial, Helvetica, sans, sans-serif;
     background-color: white;
     border-radius: var(--border-radius);
     box-shadow: var(--outer-shadow);
+    color: var(--base-color);
+    font-family: Arial, Helvetica, sans, sans-serif;
     list-style: none;
     padding-left: 0;
 }
@@ -40,19 +43,21 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-/* hide radio and hover effect */
+/* hide checkbox */
 .c-accordion__summary-btn {
     opacity: 0;
     position: absolute;
 }
 
+/* hover color of the title */
 .c-accordion__summary-btn:hover + .c-accordion__summary-label {
     background-color: var(--title-hover-background-color);
 }
 
+/* focus color of the title */
 .c-accordion__summary-btn:focus + .c-accordion__summary-label {
     outline: 1px dotted var(--outline-color);
-    outline: -webkit-focus-ring-color  auto 5px;
+    outline: -webkit-focus-ring-color auto 5px;
 }
 
 .c-accordion__summary-btn:checked + .c-accordion__summary-label {
@@ -66,16 +71,18 @@
     padding-top: 15px;
 }
 
-/* transition effect on icon from + to - and from - to + */
+/* transition effect on icon from + to - */
 .c-accordion__summary-btn:checked ~ .c-accordion__summary-label:before {
     transform: translate(-50%,-50%) rotate(0);
 }
 
+/* transition effect on icon from - to + */
 .c-accordion__summary-btn:checked ~ .c-accordion__summary-label:after {
     opacity: 0;
     transform: translate(-50%,-50%) rotate(90deg);
 }
 
+/* accordion title */
 .c-accordion__summary-label {
     cursor: pointer;
     display: block;
@@ -85,6 +92,7 @@
     width: 100%;
 }
 
+/* accordion title icon */
 .c-accordion__summary-label:before,
 .c-accordion__summary-label:after {
     background-color: var(--icon-color);
@@ -98,10 +106,12 @@
     width: 14px;
 }
 
+/* accordion title icon horizontal bar */
 .c-accordion__summary-label:before {
     transform: translate(-50%, -50%) rotate(-90deg);
 }
 
+/* accordion title icon vertical bar */
 .c-accordion__summary-label:after {
     transform: translate(-50%, -50%);
 }
